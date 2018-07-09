@@ -26,9 +26,12 @@ namespace pendu
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
 
+
                 Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
                 
-                string entree = Console.ReadLine();
+             
+
+                string entree = Console.ReadLine().ToUpper();
                 
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
