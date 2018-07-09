@@ -6,12 +6,12 @@ namespace pendu
     {
         static string entree;
         static string lettresEntrees = "";
-
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
 
             string mot = "fox";
+
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
