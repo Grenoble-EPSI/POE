@@ -3,8 +3,10 @@ using System.Timers;
 
 namespace pendu
 {
+   
     class Program
     {
+        static int i=0;
         static string lettresEntrees = "";
         static Timer timer = null;
         static int remainingSeconds;
@@ -13,9 +15,7 @@ namespace pendu
         {
             Console.WriteLine("Jeu du pendu");
 
-            int nbessai = 0;
             remainingSeconds = 60;
-            
             Mot mot = Mot.CreateMot();
 
             while (!IsOver(mot))
@@ -23,8 +23,13 @@ namespace pendu
                 DisplayTimeCount();
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
-                Console.WriteLine($"Essai n°{nbessai++} ENTRER UNE LETTRE !");
-                string entree = Console.ReadLine();
+
+
+                Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
+                
+             
+
+                string entree = Console.ReadLine().ToUpper();
                 
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
@@ -38,6 +43,7 @@ namespace pendu
                     }
                     else
                     {
+
                         Console.WriteLine($"Bravo the charactere {entree} is in the word");
                     }
                 }
@@ -55,8 +61,13 @@ namespace pendu
 
             Console.ReadKey();
         }
-
-        private static void DisplayTimeCount()
+        
+        // methode qui sert à incrementer le compteur
+         static int nbEssai()
+        {
+            return ++i;
+        }
+    private static void DisplayTimeCount()
         {
             Console.Write("Temps écoulé : ");
 
@@ -92,10 +103,7 @@ namespace pendu
             timer.Start();
         }
 
-        private static int nbEssai(int i)
-        {
-            return i++;
-        }
+      
 
         private static bool IsOver(Mot mot)
         {

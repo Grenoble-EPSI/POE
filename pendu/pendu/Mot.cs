@@ -14,7 +14,7 @@ public class Mot
     /// </summary>
     public static Mot CreateMot()
     {        
-        return new Mot("fox");
+        return new Mot("FOX");
     }
 
     /// <summary>
