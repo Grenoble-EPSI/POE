@@ -33,7 +33,7 @@ public class Mot
     /// <param name="mot"></param>
     /// <returns></returns>
     
-    public int getlength(String mot)
+    static public int getlength(String mot)
     {
         return mot.Length;
     }
