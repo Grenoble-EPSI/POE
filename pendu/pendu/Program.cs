@@ -5,24 +5,26 @@ namespace pendu
     class Program
     {
         static string entree;
+        static string entreeMajuscule;
         static string lettresEntrees = "";
 
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
 
-            string mot = "fox";
+            string mot = "FOX";
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
                 Console.WriteLine("ENTRER UNE LETTRE !");
                 entree = Console.ReadLine();
-                lettresEntrees += entree;
+                entreeMajuscule = entree.ToUpper(); // Fonction qui passe la lettre en majuscules 
+                lettresEntrees += entreeMajuscule;
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
-                if (mot.Contains(entree))
+                if (mot.Contains(entreeMajuscule))
                 {
-                    Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                    Console.WriteLine($"Bravo the charactere {entreeMajuscule} is in the word");
                 }
                 else
                 {
