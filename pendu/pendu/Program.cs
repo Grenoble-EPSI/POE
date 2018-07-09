@@ -50,7 +50,7 @@ namespace pendu
                 
                 else
                 {
-                    Console.WriteLine("c'est pas correcte, réessayer encore");
+                    Console.WriteLine("Ce n'est pas correcte, réessayer encore");
                 }
 
                 // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
