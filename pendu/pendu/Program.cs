@@ -10,16 +10,7 @@ namespace pendu
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
-
-<<<<<<< HEAD
-            // Fonction prise en compte de l'input et affichage de celle ci.
-            Console.WriteLine("ENTRER UNE LETTRE !");
-            string entree = Console.ReadLine();
-            lettresEntrees += entree;
-=======
-            string mot = "fox";
->>>>>>> 0e0a0f9e11b259b74d523f1ba847906ef35842e6
-
+            string mot = "toto";
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.

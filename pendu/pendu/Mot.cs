@@ -33,11 +33,9 @@ public class Mot
     /// <param name="mot"></param>
     /// <returns></returns>
     
-    public int getlenght(String mot)
+    public int getlength(String mot)
     {
-        int taille;
-        taille = mot.Length;
-        return taille;
+        return mot.Length;
     }
 
 }
