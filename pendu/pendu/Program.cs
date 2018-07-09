@@ -23,7 +23,15 @@ namespace pendu
                 DisplayTimeCount();
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
+<<<<<<< HEAD
                 Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
+=======
+
+
+                Console.WriteLine($"Essai n°{nbEssai()} Entrer une lettre !");
+                
+             
+>>>>>>> 9e0f2505383a279a2e8ed0ccaaab30881682a473
 
                 string entree = Console.ReadLine().ToUpper();
 
@@ -38,28 +46,37 @@ namespace pendu
                 {
                     if (lettresEntrees.Contains(entree))
                     {
-                        Console.WriteLine($"you already used this character");
+                        Console.WriteLine($" Caractère déja sésie");
                     }
                     else
                     {
+<<<<<<< HEAD
                         Console.WriteLine($"Bravo the charactere {entree} is in the word");
+=======
+
+                        Console.WriteLine($"Bravo! {entree} keep going !");
+>>>>>>> 9e0f2505383a279a2e8ed0ccaaab30881682a473
                     }
                 }
                 
                 else
                 {
-                    Console.WriteLine("You are wrong, try again");
+                    Console.WriteLine("Wrong, try again !");
                 }
 
                 // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
                 lettresEntrees += entree;
             }
 
+<<<<<<< HEAD
             //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
             if(IsOver(mot))
             {
                 Console.WriteLine("Bravo ! Tu as trouvé le mot !");
             }
+=======
+            Console.WriteLine("Bravo ! You found the right word !");
+>>>>>>> 9e0f2505383a279a2e8ed0ccaaab30881682a473
 
             Console.ReadKey();
         }
