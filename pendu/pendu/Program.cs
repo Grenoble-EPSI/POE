@@ -34,7 +34,10 @@ namespace pendu
 
             Console.ReadKey();
         }
-
+        private static int nbEssai(int i)
+        {
+            return i++;
+        }
         private static bool IsOver(string mot)
         {
             for(int i = 0; i < mot.Length ; i++)
