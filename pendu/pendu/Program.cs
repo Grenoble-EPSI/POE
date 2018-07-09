@@ -8,27 +8,29 @@ namespace pendu
         static string lettresEntrees;
         static void Main(string[] args)
         {
-            string mot = "bateau";
-
             Console.WriteLine("Jeu du pendu");
 
             while (!IsOver())
             {
+                // Fonction prise en compte de l'input et affichage de celle ci.
                 Console.WriteLine("ENTRER UNE LETTRE !");
                 entree = Console.ReadLine();
                 lettresEntrees += entree;
-                Console.WriteLine("entrée :" + entree + " lettres entrées :" + lettresEntrees);
 
-                /*if(verifLettre(entree, mot))
+                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
+
+                string mot = "fox";
+                if (mot.Contains(entree))
                 {
-                    Console.WriteLine("lettre valide");
+                    Console.WriteLine($"Bravo the charactere {entree} is in the word");
                 }
                 else
                 {
-                    Console.WriteLine("lettre non valide");
-                }*/
+                    Console.WriteLine("You are wrong, try again");
+                }
             }
 
+            Console.ReadKey();
         }
 
         private static bool IsOver()
@@ -55,3 +57,4 @@ namespace pendu
         }
     }
 }
+
