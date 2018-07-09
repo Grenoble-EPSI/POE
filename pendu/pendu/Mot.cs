@@ -10,20 +10,24 @@ public class Mot
     }
 
     /// <summary>
-    /// la méthode getMot() qui permet de selectionner un mot
+    /// Crée un mot
     /// </summary>
-    /// <param name="mot"></param>
-    /// <returns></returns>
     public static Mot CreateMot()
     {        
         return new Mot("fox");
     }
 
+    /// <summary>
+    /// Retourne vrai si le mot contient le charactere
+    /// </summary>
     public bool Contains(string character)
     {
         return mot.Contains(character);
     }
 
+    /// <summary>
+    /// retourne vrai si les lettres du mot sont toutes dans letters
+    /// </summary>
     public bool HaveAllLeters(string letters)
     {
         for(int i = 0; i < mot.Length ; i++)
@@ -38,10 +42,8 @@ public class Mot
     }
 
     /// <summary>
-    /// la méthode getlenght qui permet de retourner la taille du mot
+    /// la taille du mot
     /// </summary>
-    /// <param name="mot"></param>
-    /// <returns></returns>
     public int Length
     {
         get
