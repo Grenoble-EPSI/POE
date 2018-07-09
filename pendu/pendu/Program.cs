@@ -23,6 +23,8 @@ namespace pendu
                 DisplayTimeCount();
                 Console.WriteLine(DisplayWordResult(mot));
                 // Fonction prise en compte de l'input et affichage de celle ci.
+                
+                Console.WriteLine();
                 Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
                 string entree = Console.ReadLine().ToUpper();
@@ -38,8 +40,12 @@ namespace pendu
                 {
                     if (lettresEntrees.Contains(entree))
                     {
+<<<<<<< HEAD
 
                         Console.WriteLine($" Caractère déja entré");
+=======
+                        Console.WriteLine($" Lettre déja saisie");
+>>>>>>> e2d0e646c2a1c11e6b3c45454664ce2d33884ad9
                     }
                     else
                     {
