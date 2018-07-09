@@ -21,9 +21,18 @@ namespace pendu
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
                 if (mot.Contains(entree))
-                {
-                    Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                
+                { if (!(lettresEntrees.Contains(entree)))
+
+                    {
+                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"you already used this character");
+                    }
                 }
+                
                 else
                 {
                     Console.WriteLine("You are wrong, try again");
@@ -47,6 +56,7 @@ namespace pendu
 
             return true;
         }
+  
     }
 }
 
