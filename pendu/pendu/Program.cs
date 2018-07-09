@@ -25,7 +25,7 @@ namespace pendu
                 // Fonction prise en compte de l'input et affichage de celle ci.
 
 
-                Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
+                Console.WriteLine($"Essai n°{nbEssai()} Entrer une lettre !");
                 
              
 
@@ -44,14 +44,13 @@ namespace pendu
                     else
                     {
 
-                        Console.WriteLine($"Bravo the character {entree} is in the word");
- 
+                        Console.WriteLine($"Bravo! {entree} keep going !");
                     }
                 }
                 
                 else
                 {
-                    Console.WriteLine("Ce n'est pas correcte, réessayer encore");
+                    Console.WriteLine("Wrong, try again !");
                 }
 
                 // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
