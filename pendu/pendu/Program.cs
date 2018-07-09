@@ -5,12 +5,15 @@ namespace pendu
     class Program
     {
         static string entree;
-        static string lettresEntrees;
+        static string lettresEntrees = "";
+
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
 
-            while (!IsOver())
+            string mot = "fox";
+
+            while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
                 Console.WriteLine("ENTRER UNE LETTRE !");
@@ -19,7 +22,6 @@ namespace pendu
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
 
-                string mot = "fox";
                 if (mot.Contains(entree))
                 {
                     Console.WriteLine($"Bravo the charactere {entree} is in the word");
@@ -30,13 +32,22 @@ namespace pendu
                 }
             }
 
+            Console.WriteLine("Bravo ! Tu as trouvé le mot !");
+
             Console.ReadKey();
         }
 
-        private static bool IsOver()
+        private static bool IsOver(string mot)
         {
-            
-            return false;
+            for(int i = 0; i < mot.Length ; i++)
+            {
+                if (!lettresEntrees.Contains(mot.Substring(i, 1)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private static bool VerifLettre(string lettre, string mot)
