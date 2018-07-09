@@ -15,14 +15,15 @@ namespace pendu
         {
             Console.WriteLine("Jeu du pendu");
 
-            remainingSeconds = 60;
+            remainingSeconds = 10;
             Mot mot = Mot.CreateMot();
 
-            while (!IsOver(mot))
+            while (!IsOver(mot) && remainingSeconds > 0)
             {
                 DisplayTimeCount();
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
+<<<<<<< HEAD
 
                 string entree = Console.ReadLine().ToUpper();
                 
@@ -41,6 +42,22 @@ namespace pendu
                 // Test pour savoir si la lettre a  été déja saisie par l'utilisateur
                 { if (lettresEntrees.Contains(entree))
 
+=======
+                Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
+
+                string entree = Console.ReadLine().ToUpper();
+
+                //Si le temps est écoulé, on arrète maintenant
+                if(remainingSeconds <= 0)
+                {
+                    break;
+                }
+
+                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
+                if (mot.Contains(entree))
+                {
+                    if (lettresEntrees.Contains(entree))
+>>>>>>> 11ee63ef9a21b088ec399768ec492212e3b852f1
                     {
 
                         Console.WriteLine($" Caractère déja saisie");
@@ -49,7 +66,6 @@ namespace pendu
                     }
                     else
                     {
-
                         Console.WriteLine($"Bravo! {entree} Continuez !");
                     }
                 }
@@ -63,7 +79,11 @@ namespace pendu
                 lettresEntrees += entree;
             }
 
-            Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
+            //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
+            if(IsOver(mot))
+            {
+                Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
+            }
 
             Console.ReadKey();
         }
@@ -103,6 +123,12 @@ namespace pendu
 
                 //Se repositionne à la position initiale
                 Console.SetCursorPosition(currentPosLeft, currentPosTop);
+
+                if(remainingSeconds < 0)
+                {
+                    Console.WriteLine("Dommage ! Tu as perdu petit asticot !");
+                    timer.Stop();
+                }
             };
 
             //Ajout d'un retour a la ligne et lancement du timer
@@ -114,7 +140,6 @@ namespace pendu
         {
             return mot.HaveAllLeters(lettresEntrees);
         }
-  
     }
 }
 
