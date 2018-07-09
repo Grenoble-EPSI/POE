@@ -10,7 +10,8 @@ namespace pendu
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
-            string mot = "toto";
+            
+            string mot = "fox";
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
@@ -45,23 +46,6 @@ namespace pendu
             }
 
             return true;
-        }
-
-        private static bool VerifLettre(string lettre, string mot)
-        {
-            bool lettreValide = false;
-            for (int i = 0; i < mot.Length ; i++ )
-            {
-                if (lettre == mot.Substring(i, 1))
-                {
-                    Console.WriteLine(mot.Substring(i, 1));
-                    lettreValide = true;
-                    break;
-                }
-            }
-            
-
-            return lettreValide;
         }
     }
 }
