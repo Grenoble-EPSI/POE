@@ -44,7 +44,7 @@ namespace pendu
                     else
                     {
 
-                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                        Console.WriteLine($"Bravo the character {entree} is in the word");
                     }
                 }
                 
@@ -57,7 +57,7 @@ namespace pendu
                 lettresEntrees += entree;
             }
 
-            Console.WriteLine("Bravo ! Tu as trouvé le mot !");
+            Console.WriteLine("Bravo ! You found the right word !");
 
             Console.ReadKey();
         }
