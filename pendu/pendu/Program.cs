@@ -21,7 +21,6 @@ namespace pendu
                 lettresEntrees += entree;
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
-
                 if (mot.Contains(entree))
                 {
                     Console.WriteLine($"Bravo the charactere {entree} is in the word");
