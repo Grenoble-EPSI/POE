@@ -21,13 +21,14 @@ namespace pendu
             while (!IsOver(mot) && remainingSeconds > 0)
             {
                 DisplayTimeCount();
-
+                 string entree = Console.ReadLine().ToUpper();
+               
                 // Fonction prise en compte de l'input et affichage de celle ci.
                 
-                Console.WriteLine();
+                
                 Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
-                string entree = Console.ReadLine().ToUpper();
+               
 
                 //Si le temps est écoulé, on arrète maintenant
                 if(remainingSeconds <= 0)
