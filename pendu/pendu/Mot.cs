@@ -2,42 +2,53 @@
 
 public class Mot
 {
-    private String mot;
-    /// <summary>
-    /// la Création de la classe Mot() avec les constructeurs 
-    /// </summary>
-    /// 
-	public Mot()
-	{
-	}
+    private String mot = "";
 
-
-    public Mot(String mot)
+    public Mot(string mot)
     {
         this.mot = mot;
     }
 
     /// <summary>
-    /// la méthode getMot() qui permet de selectionner un mot
+    /// Crée un mot
     /// </summary>
-    /// <param name="mot"></param>
-    /// <returns></returns>
-    public String getMot(String mot)
+    public static Mot CreateMot()
     {        
-        return mot;
+        return new Mot("fox");
     }
 
     /// <summary>
-    /// la méthode getlenght qui permet de retourner la taille du mot
+    /// Retourne vrai si le mot contient le charactere
     /// </summary>
-    /// <param name="mot"></param>
-    /// <returns></returns>
-    
-    public int getlenght(String mot)
+    public bool Contains(string character)
     {
-        int taille;
-        taille = mot.Length;
-        return taille;
+        return mot.Contains(character);
     }
 
+    /// <summary>
+    /// retourne vrai si les lettres du mot sont toutes dans letters
+    /// </summary>
+    public bool HaveAllLeters(string letters)
+    {
+        for(int i = 0; i < mot.Length ; i++)
+        {
+            if (!letters.Contains(mot.Substring(i, 1)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// la taille du mot
+    /// </summary>
+    public int Length
+    {
+        get
+        {
+            return mot.Length;
+        }
+    }
 }
