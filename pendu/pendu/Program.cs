@@ -19,7 +19,7 @@ namespace pendu
                 entree = Console.ReadLine();
                 lettresEntrees += entree;
 
-                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
+                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
                 {
                     Console.WriteLine($"Bravo the charactere {entree} is in the word");
