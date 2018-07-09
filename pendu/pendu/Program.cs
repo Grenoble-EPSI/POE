@@ -11,11 +11,12 @@ namespace pendu
             Console.WriteLine("Jeu du pendu");
 
             string mot = "fox";
-
+            int nbessai = 0;
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
-                Console.WriteLine("ENTRER UNE LETTRE !");
+                // Ajout d'un compteur d'essai
+                Console.WriteLine($"Essai n°{++nbessai} ENTRER UNE LETTRE !");
                 entree = Console.ReadLine();
                 lettresEntrees += entree;
 
@@ -34,7 +35,7 @@ namespace pendu
 
             Console.ReadKey();
         }
-        private static int nbEssai(int i)
+        public static int nbEssai(int i)
         {
             return i++;
         }
