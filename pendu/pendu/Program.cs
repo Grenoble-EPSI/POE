@@ -6,11 +6,10 @@ namespace pendu
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Jeu du pendu");
 
             while (!IsOver())
             {
-
 
             }
 
@@ -18,6 +17,7 @@ namespace pendu
 
         private static bool IsOver()
         {
+            
             return false;
         }
     }
