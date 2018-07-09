@@ -63,11 +63,12 @@ namespace pendu
         }
         
         // methode qui sert à incrementer le compteur
-         static int nbEssai()
+        static int nbEssai()
         {
             return ++i;
         }
-    private static void DisplayTimeCount()
+
+        private static void DisplayTimeCount()
         {
             Console.Write("Temps écoulé : ");
 
@@ -102,8 +103,6 @@ namespace pendu
             Console.WriteLine("");
             timer.Start();
         }
-
-      
 
         private static bool IsOver(Mot mot)
         {
