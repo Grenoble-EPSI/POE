@@ -8,6 +8,8 @@ namespace pendu
         static string lettresEntrees;
         static void Main(string[] args)
         {
+            string mot = "bateau";
+
             Console.WriteLine("Jeu du pendu");
 
             while (!IsOver())
@@ -16,6 +18,15 @@ namespace pendu
                 entree = Console.ReadLine();
                 lettresEntrees += entree;
                 Console.WriteLine("entrée :" + entree + " lettres entrées :" + lettresEntrees);
+
+                /*if(verifLettre(entree, mot))
+                {
+                    Console.WriteLine("lettre valide");
+                }
+                else
+                {
+                    Console.WriteLine("lettre non valide");
+                }*/
             }
 
         }
@@ -24,6 +35,23 @@ namespace pendu
         {
             
             return false;
+        }
+
+        private static bool VerifLettre(string lettre, string mot)
+        {
+            bool lettreValide = false;
+            for (int i = 0; i < mot.Length ; i++ )
+            {
+                if (lettre == mot.Substring(i, 1))
+                {
+                    Console.WriteLine(mot.Substring(i, 1));
+                    lettreValide = true;
+                    break;
+                }
+            }
+            
+
+            return lettreValide;
         }
     }
 }

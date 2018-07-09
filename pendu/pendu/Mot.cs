@@ -4,7 +4,6 @@ public class Mot
 {
     private String mot;
     private Double taille; 
-
    
 	public Mot()
 	{
