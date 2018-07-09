@@ -15,20 +15,19 @@ namespace pendu
         {
             Console.WriteLine("Jeu du pendu");
 
-            remainingSeconds = 10;
+            remainingSeconds = 100;
             Mot mot = Mot.CreateMot();
 
             while (!IsOver(mot) && remainingSeconds > 0)
             {
                 DisplayTimeCount();
-                 string entree = Console.ReadLine().ToUpper();
-               
+                Console.WriteLine(DisplayWordResult(mot));
                 // Fonction prise en compte de l'input et affichage de celle ci.
                 
-                
+                Console.WriteLine();
                 Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
-               
+                string entree = Console.ReadLine().ToUpper();
 
                 //Si le temps est écoulé, on arrète maintenant
                 if(remainingSeconds <= 0)
@@ -41,7 +40,7 @@ namespace pendu
                 {
                     if (lettresEntrees.Contains(entree))
                     {
-                        Console.WriteLine($" Lettre déja saisie");
+                        Console.WriteLine($" Caractère déja entré");
                     }
                     else
                     {
@@ -67,6 +66,24 @@ namespace pendu
             Console.ReadKey();
         }
         
+        private static string DisplayWordResult(Mot mot)
+        {
+            string result = "";
+            for(int i = 0; i < mot.Length; i++)
+            {
+                if (lettresEntrees.Contains(mot.GetChar(i).ToString()))
+                {
+                    result += mot.GetChar(i);
+                } else
+                {
+                    result += "_";
+                }
+            }
+            return result;
+           
+        }
+
+
         // methode qui sert à incrementer le compteur
         static int nbEssai()
         {
