@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 
 namespace pendu
 {
@@ -10,6 +11,11 @@ namespace pendu
             Console.WriteLine("Jeu du pendu");
             
             Mot mot = Mot.CreateMot();
+
+            Console.Write("Temps écoulé : ");
+
+            DisplayTimeCount();
+
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
@@ -31,6 +37,34 @@ namespace pendu
             Console.WriteLine("Bravo ! Tu as trouvé le mot !");
 
             Console.ReadKey();
+        }
+
+        private static void DisplayTimeCount()
+        {
+            //Récupere la position du pointeur console pour mettre a jour le compteur de temps
+            var cursorPositionTimeLeft = Console.CursorLeft;
+            var cursorPositionTimeTop = Console.CursorTop;
+
+            //Création du timer
+            var remainingSeconds = 60;
+            var timer = new Timer(1000);
+            timer.Elapsed += (e, a) =>
+            {
+                //Récupere la position du curseur au moment de la mise a jour
+                var currentPosLeft = Console.CursorLeft;
+                var currentPosTop = Console.CursorTop;
+
+                //Se positionne a la bonne position pour réécrire le temps
+                Console.SetCursorPosition(cursorPositionTimeLeft, cursorPositionTimeTop);
+                Console.Write(remainingSeconds-- + " secondes          ");
+
+                //Se repositionne à la position initiale
+                Console.SetCursorPosition(currentPosLeft, currentPosTop);
+            };
+
+            //Ajout d'un retour a la ligne et lancement du timer
+            Console.WriteLine("");
+            timer.Start();
         }
 
         private static int nbEssai(int i)
