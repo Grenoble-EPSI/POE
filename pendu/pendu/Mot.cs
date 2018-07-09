@@ -3,10 +3,10 @@
 public class Mot
 {
     private String mot;
-
     /// <summary>
     /// la Création de la classe Mot() avec les constructeurs 
     /// </summary>
+    /// 
 	public Mot()
 	{
 	}
