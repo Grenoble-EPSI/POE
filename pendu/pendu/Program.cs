@@ -8,6 +8,7 @@ namespace pendu
         static string lettresEntrees;
         static void Main(string[] args)
         {
+            // Fonction prise en compte de l'input et affichage de celle ci.
             Console.WriteLine("ENTRER UNE LETTRE !");
             entree = Console.ReadLine();
             lettresEntrees += entree;
