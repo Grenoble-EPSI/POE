@@ -21,19 +21,20 @@ namespace pendu
                 // Fonction prise en compte de l'input et affichage de celle ci.
                 Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
                 string entree = Console.ReadLine();
-                lettresEntrees += entree;
+                
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
                 
-                { if (!(lettresEntrees.Contains(entree)))
+                { if (lettresEntrees.Contains(entree))
 
                     {
-                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                        Console.WriteLine($"you already used this character");
                     }
                     else
                     {
-                        Console.WriteLine("you already used this character");
+
+                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
                     }
                 }
                 
@@ -41,6 +42,8 @@ namespace pendu
                 {
                     Console.WriteLine("You are wrong, try again");
                 }
+
+                lettresEntrees += entree;
             }
 
             Console.WriteLine("Bravo ! Tu as trouvé le mot !");
@@ -48,7 +51,7 @@ namespace pendu
             Console.ReadKey();
         }
 
-
+        // methode qui sert à incrementer le compteur
          static int nbEssai()
         {
             return ++i;
