@@ -8,12 +8,15 @@ namespace pendu
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
+
+            int nbessai = 0;
+    
             
             Mot mot = Mot.CreateMot();
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
-                Console.WriteLine("ENTRER UNE LETTRE !");
+                Console.WriteLine($"Essai n°{++nbessai} ENTRER UNE LETTRE !");
                 string entree = Console.ReadLine();
                 
 
@@ -43,6 +46,7 @@ namespace pendu
 
             Console.ReadKey();
         }
+
 
         private static int nbEssai(int i)
         {
