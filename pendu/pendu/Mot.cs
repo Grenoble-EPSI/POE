@@ -51,4 +51,9 @@ public class Mot
             return mot.Length;
         }
     }
+
+    public char GetChar(int index)
+    {
+        return mot.ToCharArray()[index];
+    }
 }
