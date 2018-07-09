@@ -12,7 +12,7 @@ namespace pendu
 
             // Fonction prise en compte de l'input et affichage de celle ci.
             Console.WriteLine("ENTRER UNE LETTRE !");
-            string entree = Console.ReadLine();
+            entree = Console.ReadLine();
             lettresEntrees += entree;
 
             // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
