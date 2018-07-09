@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 
 namespace pendu
 {
@@ -15,17 +16,25 @@ namespace pendu
     
             
             Mot mot = Mot.CreateMot();
+
+            Console.Write("Temps écoulé : ");
+
+            DisplayTimeCount();
+
             while (!IsOver(mot))
             {
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
+
                 Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
+                
                 string entree = Console.ReadLine();
                 
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
                 
+                // Test pour savoir si la lettre a déjà été entré par l'utilisateur
                 { if (lettresEntrees.Contains(entree))
 
                     {
@@ -43,6 +52,7 @@ namespace pendu
                     Console.WriteLine("You are wrong, try again");
                 }
 
+                // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
                 lettresEntrees += entree;
             }
 
@@ -50,12 +60,41 @@ namespace pendu
 
             Console.ReadKey();
         }
-
+        
         // methode qui sert à incrementer le compteur
          static int nbEssai()
         {
             return ++i;
         }
+    private static void DisplayTimeCount()
+        {
+            //Récupere la position du pointeur console pour mettre a jour le compteur de temps
+            var cursorPositionTimeLeft = Console.CursorLeft;
+            var cursorPositionTimeTop = Console.CursorTop;
+
+            //Création du timer
+            var remainingSeconds = 60;
+            var timer = new Timer(1000);
+            timer.Elapsed += (e, a) =>
+            {
+                //Récupere la position du curseur au moment de la mise a jour
+                var currentPosLeft = Console.CursorLeft;
+                var currentPosTop = Console.CursorTop;
+
+                //Se positionne a la bonne position pour réécrire le temps
+                Console.SetCursorPosition(cursorPositionTimeLeft, cursorPositionTimeTop);
+                Console.Write(remainingSeconds-- + " secondes          ");
+
+                //Se repositionne à la position initiale
+                Console.SetCursorPosition(currentPosLeft, currentPosTop);
+            };
+
+            //Ajout d'un retour a la ligne et lancement du timer
+            Console.WriteLine("");
+            timer.Start();
+        }
+
+      
 
         private static bool IsOver(Mot mot)
         {
