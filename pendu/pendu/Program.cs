@@ -41,18 +41,18 @@ namespace pendu
                 { if (lettresEntrees.Contains(entree))
 
                     {
-                        Console.WriteLine($"you already used this character");
+                        Console.WriteLine($" Caractère déja sésie");
                     }
                     else
                     {
 
-                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                        Console.WriteLine($"Bravo {entree} contunier");
                     }
                 }
                 
                 else
                 {
-                    Console.WriteLine("You are wrong, try again");
+                    Console.WriteLine("c'est pas correcte, réessayer encore");
                 }
 
                 // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
