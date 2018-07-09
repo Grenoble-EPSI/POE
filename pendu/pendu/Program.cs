@@ -4,27 +4,36 @@ namespace pendu
 {
     class Program
     {
-        static string entree;
         static string lettresEntrees = "";
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
 
-            string mot = "fox";
             int nbessai = 0;
+    
+            
+            Mot mot = Mot.CreateMot();
             while (!IsOver(mot))
             {
                 // Fonction prise en compte de l'input et affichage de celle ci.
-                // Ajout d'un compteur d'essai
                 Console.WriteLine($"Essai n°{++nbessai} ENTRER UNE LETTRE !");
-                entree = Console.ReadLine();
+                string entree = Console.ReadLine();
                 lettresEntrees += entree;
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
-                {
-                    Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                
+                { if (!(lettresEntrees.Contains(entree)))
+
+                    {
+                        Console.WriteLine($"Bravo the charactere {entree} is in the word");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"you already used this character");
+                    }
                 }
+                
                 else
                 {
                     Console.WriteLine("You are wrong, try again");
@@ -35,22 +44,18 @@ namespace pendu
 
             Console.ReadKey();
         }
-        public static int nbEssai(int i)
+
+
+        private static int nbEssai(int i)
         {
             return i++;
         }
-        private static bool IsOver(string mot)
-        {
-            for(int i = 0; i < mot.Length ; i++)
-            {
-                if (!lettresEntrees.Contains(mot.Substring(i, 1)))
-                {
-                    return false;
-                }
-            }
 
-            return true;
+        private static bool IsOver(Mot mot)
+        {
+            return mot.HaveAllLeters(lettresEntrees);
         }
+  
     }
 }
 
