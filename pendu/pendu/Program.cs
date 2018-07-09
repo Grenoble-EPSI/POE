@@ -25,7 +25,7 @@ namespace pendu
                 // Fonction prise en compte de l'input et affichage de celle ci.
 
 
-                Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
+                Console.WriteLine($"Essai n°{nbEssai()} Entrer une lettre !");
                 
              
 
@@ -44,7 +44,7 @@ namespace pendu
                     else
                     {
 
-                        Console.WriteLine($"Bravo {entree} contunier");
+                        Console.WriteLine($"Bravo! {entree} continuer");
                     }
                 }
                 
