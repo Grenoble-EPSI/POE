@@ -18,8 +18,6 @@ namespace pendu
             
             Mot mot = Mot.CreateMot();
 
-            Console.Write("Temps écoulé : ");
-
             while (!IsOver(mot))
             {
                 DisplayTimeCount();
@@ -60,6 +58,8 @@ namespace pendu
 
         private static void DisplayTimeCount()
         {
+            Console.Write("Temps écoulé : ");
+
             //Récupere la position du pointeur console pour mettre a jour le compteur de temps
             var cursorPositionTimeLeft = Console.CursorLeft;
             var cursorPositionTimeTop = Console.CursorTop;
