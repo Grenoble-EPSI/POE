@@ -23,23 +23,24 @@ namespace pendu
                 DisplayTimeCount();
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
-
-
-                Console.WriteLine($"Essai n°{nbEssai()} Entrer une lettre !");
+                string entree = Console.ReadLine().ToUpper();
+                for(int i=0,i<)
+                Console.WriteLine();
+                Console.WriteLine($"Essai n°{nbEssai()} saisir une lettre !");
                 
              
 
-                string entree = Console.ReadLine().ToUpper();
+                
                 
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
                 
-                // Test pour savoir si la lettre a déjà été entré par l'utilisateur
+                // Test pour savoir si la lettre a  été déja saisie par l'utilisateur
                 { if (lettresEntrees.Contains(entree))
 
                     {
-                        Console.WriteLine($" Caractère déja sésie");
+                        Console.WriteLine($" Caractère déja saisie");
                     }
                     else
                     {
