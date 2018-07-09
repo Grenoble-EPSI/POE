@@ -15,35 +15,33 @@ namespace pendu
         {
             Console.WriteLine("Jeu du pendu");
 
-            remainingSeconds = 60;
+            remainingSeconds = 10;
             Mot mot = Mot.CreateMot();
 
-            while (!IsOver(mot))
+            while (!IsOver(mot) && remainingSeconds > 0)
             {
                 DisplayTimeCount();
 
                 // Fonction prise en compte de l'input et affichage de celle ci.
-
-
                 Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
-                
-             
 
                 string entree = Console.ReadLine().ToUpper();
-                
+
+                //Si le temps est écoulé, on arrète maintenant
+                if(remainingSeconds <= 0)
+                {
+                    break;
+                }
 
                 // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
                 if (mot.Contains(entree))
-                
-                // Test pour savoir si la lettre a déjà été entré par l'utilisateur
-                { if (lettresEntrees.Contains(entree))
-
+                {
+                    if (lettresEntrees.Contains(entree))
                     {
                         Console.WriteLine($"you already used this character");
                     }
                     else
                     {
-
                         Console.WriteLine($"Bravo the charactere {entree} is in the word");
                     }
                 }
@@ -57,7 +55,11 @@ namespace pendu
                 lettresEntrees += entree;
             }
 
-            Console.WriteLine("Bravo ! Tu as trouvé le mot !");
+            //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
+            if(IsOver(mot))
+            {
+                Console.WriteLine("Bravo ! Tu as trouvé le mot !");
+            }
 
             Console.ReadKey();
         }
@@ -97,6 +99,12 @@ namespace pendu
 
                 //Se repositionne à la position initiale
                 Console.SetCursorPosition(currentPosLeft, currentPosTop);
+
+                if(remainingSeconds < 0)
+                {
+                    Console.WriteLine("Dommage ! Tu as perdu petit asticot !");
+                    timer.Stop();
+                }
             };
 
             //Ajout d'un retour a la ligne et lancement du timer
