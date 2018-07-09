@@ -25,7 +25,7 @@ namespace pendu
                 // Fonction prise en compte de l'input et affichage de celle ci.
 
 
-                Console.WriteLine($"Essai n°{nbEssai()} Entrer une lettre !");
+                Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
                 
              
 
@@ -39,25 +39,25 @@ namespace pendu
                 { if (lettresEntrees.Contains(entree))
 
                     {
-                        Console.WriteLine($" Caractère déja sésie");
+                        Console.WriteLine($" Caractère déja entré");
                     }
                     else
                     {
 
-                        Console.WriteLine($"Bravo! {entree} keep going !");
+                        Console.WriteLine($"Bravo! {entree} Continuez !");
                     }
                 }
                 
                 else
                 {
-                    Console.WriteLine("Wrong, try again !");
+                    Console.WriteLine("Manqué, essayez encore !");
                 }
 
                 // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
                 lettresEntrees += entree;
             }
 
-            Console.WriteLine("Bravo ! You found the right word !");
+            Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
 
             Console.ReadKey();
         }
