@@ -14,8 +14,6 @@ namespace pendu
             Console.WriteLine("ENTRER UNE LETTRE !");
             string entree = Console.ReadLine();
             lettresEntrees += entree;
-            Console.WriteLine("entrée :" + entree + " lettres entrées :" + lettresEntrees);
-
 
             // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
 
