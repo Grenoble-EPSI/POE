@@ -2,17 +2,9 @@
 
 public class Mot
 {
-    private String mot;
-    /// <summary>
-    /// la Création de la classe Mot() avec les constructeurs 
-    /// </summary>
-    /// 
-	public Mot()
-	{
-	}
+    private String mot = "";
 
-
-    public Mot(String mot)
+    public Mot(string mot)
     {
         this.mot = mot;
     }
@@ -22,9 +14,27 @@ public class Mot
     /// </summary>
     /// <param name="mot"></param>
     /// <returns></returns>
-    public String getMot(String mot)
+    public static Mot CreateMot()
     {        
-        return mot;
+        return new Mot("fox");
+    }
+
+    public bool Contains(string character)
+    {
+        return mot.Contains(character);
+    }
+
+    public bool HaveAllLeters(string letters)
+    {
+        for(int i = 0; i < mot.Length ; i++)
+        {
+            if (!letters.Contains(mot.Substring(i, 1)))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -32,12 +42,11 @@ public class Mot
     /// </summary>
     /// <param name="mot"></param>
     /// <returns></returns>
-    
-    public int getlenght(String mot)
+    public int Length
     {
-        int taille;
-        taille = mot.Length;
-        return taille;
+        get
+        {
+            return mot.Length;
+        }
     }
-
 }
