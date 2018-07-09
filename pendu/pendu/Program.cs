@@ -18,6 +18,8 @@ namespace pendu
             // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot
 
             string mot = "fox";
+
+          
             if (mot.Contains(entree))
             {
                 Console.WriteLine($"Bravo the charactere {entree} is in the word");
