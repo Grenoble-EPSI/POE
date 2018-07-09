@@ -2,21 +2,24 @@
 
 namespace pendu
 {
+   
     class Program
     {
+        static int i=0;
         static string lettresEntrees = "";
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
 
-            int nbessai = 0;
+            
     
             
             Mot mot = Mot.CreateMot();
             while (!IsOver(mot))
             {
+
                 // Fonction prise en compte de l'input et affichage de celle ci.
-                Console.WriteLine($"Essai n°{++nbessai} ENTRER UNE LETTRE !");
+                Console.WriteLine($"Essai n°{nbEssai()} ENTRER UNE LETTRE !");
                 string entree = Console.ReadLine();
                 lettresEntrees += entree;
 
@@ -30,7 +33,7 @@ namespace pendu
                     }
                     else
                     {
-                        Console.WriteLine($"you already used this character");
+                        Console.WriteLine("you already used this character");
                     }
                 }
                 
@@ -46,9 +49,9 @@ namespace pendu
         }
 
 
-        private static int nbEssai(int i)
+         static int nbEssai()
         {
-            return i++;
+            return ++i;
         }
 
         private static bool IsOver(Mot mot)
