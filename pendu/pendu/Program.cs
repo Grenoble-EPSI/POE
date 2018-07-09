@@ -40,12 +40,7 @@ namespace pendu
                 {
                     if (lettresEntrees.Contains(entree))
                     {
-<<<<<<< HEAD
-
                         Console.WriteLine($" Caractère déja entré");
-=======
-                        Console.WriteLine($" Lettre déja saisie");
->>>>>>> e2d0e646c2a1c11e6b3c45454664ce2d33884ad9
                     }
                     else
                     {
