@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Timers;
 
 
@@ -15,28 +14,8 @@ namespace pendu
 
         static void Main(string[] args)
         {
-            string path = @"C:\Users\celin\POE\pendu\MyTest.txt";
-            if (!File.Exists(path))
-            {
-                // Creer le fichier contenant les mots
-
-                using (StreamWriter sw = File.CreateText(path))
-
-                {
-
-                    sw.WriteLine("chaussette");
-                    sw.WriteLine("lavabo");
-                    sw.WriteLine("soleil");
-                    sw.WriteLine("nuage");
-                    sw.WriteLine("etoile");
-                    sw.WriteLine("caramel");
-                    sw.WriteLine("chocolat");
-                    sw.WriteLine("sucre");
-                    sw.WriteLine("pizza");
-                    sw.WriteLine("robe");
-                }
-
-            }
+            string path = @"~\dictionnaire.txt";
+            
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
 
