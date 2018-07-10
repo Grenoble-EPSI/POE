@@ -56,6 +56,7 @@ namespace pendu
                     Console.WriteLine(DisplayWordResult(mot));
                     // Fonction prise en compte de l'input et affichage de celle ci.
 
+
                     Console.WriteLine();
                     Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
@@ -114,7 +115,7 @@ namespace pendu
                     result += mot.GetChar(i);
                 } else
                 {
-                    result += "_";
+                    result += "-";
                 }
             }
             return result;
