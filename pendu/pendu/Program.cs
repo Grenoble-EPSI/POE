@@ -19,7 +19,6 @@ namespace pendu
             if (!File.Exists(path))
             {
                 // Creer le fichier contenant les mots
-
                 using (StreamWriter sw = File.CreateText(path))
 
                 {
@@ -57,11 +56,10 @@ namespace pendu
                 //Actions
                 while (!IsOver(mot) && remainingSeconds > 0)
                 {
-                    DisplayTimeCount();
+                    DisplayTimeCount(false);
                     Console.WriteLine(DisplayWordResult(mot));
+
                     // Fonction prise en compte de l'input et affichage de celle ci.
-
-
                     Console.WriteLine();
                     Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
@@ -78,17 +76,23 @@ namespace pendu
                     {
                         if (lettresEntrees.Contains(entree))
                         {
-                            DisplayColor(" Caractère déja entré", ConsoleColor.Red);
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
                         }
                         else
                         {
                             DisplayColor($"Bravo! {entree} Continuez !", ConsoleColor.Green);
                         }
                     }
-
                     else
                     {
-                        DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        if (lettresEntrees.Contains(entree))
+                        {
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        }
                     }
 
                     // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
@@ -100,16 +104,36 @@ namespace pendu
                 //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
                 if (IsOver(mot))
                 {
-                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
+                    DisplayColor("Bravo ! Tu as gagné !", ConsoleColor.Green);
                 }
-
+                
                 Console.WriteLine("Voulez vous continuer? Y/N");
 
             } while (Console.ReadLine().ToUpper() == "Y");
 
             Console.ReadKey();
         }
-        
+
+        private static void ClearConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+
+        }
+
+        private static void RefreshConsole()
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                Console.SetCursorPosition(1, Console.CursorTop - 2);
+                ClearConsoleLine();
+            }
+        }
+
+
+
         private static string DisplayWordResult(Mot mot)
         {
             string result = "";
@@ -134,8 +158,13 @@ namespace pendu
             return ++essais;
         }
 
-        private static void DisplayTimeCount()
+        private static void DisplayTimeCount(bool delete)
         {
+            if (delete == true)
+            {
+                timer.Stop();
+                return;
+            }
             Console.Write("Temps écoulé : ");
 
             //Récupere la position du pointeur console pour mettre a jour le compteur de temps
