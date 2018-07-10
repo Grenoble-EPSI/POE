@@ -6,7 +6,7 @@ namespace pendu
    
     class Program
     {
-        static int i=0;
+        static int essais;
         static string lettresEntrees = "";
         static Timer timer = null;
         static int remainingSeconds;
@@ -15,53 +15,67 @@ namespace pendu
         {
             Console.WriteLine("Jeu du pendu");
 
-            remainingSeconds = 100;
-            Mot mot = Mot.CreateMot();
-
-            while (!IsOver(mot) && remainingSeconds > 0)
+            //Boucle du jeu
+            do
             {
-                DisplayTimeCount();
-                Console.WriteLine(DisplayWordResult(mot));
-                // Fonction prise en compte de l'input et affichage de celle ci.
+                //Initialisation
+                lettresEntrees = "";
+                remainingSeconds = 100;
+                essais = 0;
+                Mot mot = Mot.CreateMot();
                 
-                Console.WriteLine();
-                Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
-
-                string entree = Console.ReadLine().ToUpper();
-
-                //Si le temps est écoulé, on arrète maintenant
-                if(remainingSeconds <= 0)
+                //Actions
+                while (!IsOver(mot) && remainingSeconds > 0)
                 {
-                    break;
-                }
+                    DisplayTimeCount();
+                    Console.WriteLine(DisplayWordResult(mot));
+                    // Fonction prise en compte de l'input et affichage de celle ci.
 
-                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
-                if (mot.Contains(entree))
-                {
-                    if (lettresEntrees.Contains(entree))
+                    Console.WriteLine();
+                    Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
+
+                    string entree = Console.ReadLine().ToUpper();
+
+                    //Si le temps est écoulé, on arrète maintenant
+                    if (remainingSeconds <= 0)
                     {
-                        Console.WriteLine($" Caractère déja entré");
+                        break;
                     }
+
+                    // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
+                    if (mot.Contains(entree))
+                    {
+                        if (lettresEntrees.Contains(entree))
+                        {
+                            Console.WriteLine($" Caractère déja entré");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Bravo! {entree} Continuez !");
+                        }
+                    }
+
                     else
                     {
-                        Console.WriteLine($"Bravo! {entree} Continuez !");
+                        Console.WriteLine("Manqué, essayez encore !");
                     }
+
+                    // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
+                    lettresEntrees += entree;
                 }
-                
-                else
+
+
+
+                //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
+                if (IsOver(mot))
                 {
-                    Console.WriteLine("Manqué, essayez encore !");
+                    Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
                 }
 
-                // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
-                lettresEntrees += entree;
-            }
 
-            //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
-            if(IsOver(mot))
-            {
-                Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
-            }
+                Console.WriteLine("Voulez vous continuer? Y/N");
+
+            } while (Console.ReadLine().ToUpper() == "Y");
 
             Console.ReadKey();
         }
@@ -87,7 +101,7 @@ namespace pendu
         // methode qui sert à incrementer le compteur
         static int nbEssai()
         {
-            return ++i;
+            return ++essais;
         }
 
         private static void DisplayTimeCount()
