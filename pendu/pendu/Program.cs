@@ -5,13 +5,16 @@ using System.Timers;
 
 namespace pendu
 {
-   
+
     class Program
     {
         static int essais;
         static string lettresEntrees = "";
         static Timer timer = null;
         static int remainingSeconds;
+        static int nbEssaiLimite;
+        static int tempsLimite;
+
 
         static void Main(string[] args)
         {
@@ -38,18 +41,16 @@ namespace pendu
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
-           
-            remainingSeconds = 100;
-           
 
-       
+            //Choix modes de jeu
+            ChoixModeJeu();
 
             //Boucle du jeu
             do
             {
                 //Initialisation
                 lettresEntrees = "";
-                remainingSeconds = 100;
+                remainingSeconds = tempsLimite;
                 essais = 0;
                 Mot mot = Mot.CreateMot();
 
@@ -109,7 +110,7 @@ namespace pendu
                     Console.Clear();
                     DisplayColor("Bravo ! Tu as gagné !", ConsoleColor.Green);
                 }
-                
+
                 Console.WriteLine("Voulez vous continuer? Y/N");
 
             } while (Console.ReadLine().ToUpper() == "Y");
@@ -129,7 +130,7 @@ namespace pendu
 
         private static void RefreshConsole()
         {
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Console.SetCursorPosition(1, Console.CursorTop - 2);
                 ClearConsoleLine();
@@ -141,7 +142,7 @@ namespace pendu
         private static string DisplayWordResult(Mot mot)
         {
             string result = "";
-            for(int i = 0; i < mot.Length; i++)
+            for (int i = 0; i < mot.Length; i++)
             {
                 if (lettresEntrees.Contains(mot.GetChar(i).ToString()))
                 {
@@ -152,7 +153,7 @@ namespace pendu
                 }
             }
             return result;
-           
+
         }
 
 
@@ -172,7 +173,7 @@ namespace pendu
             DisplayRemainingSeconds();
 
             //Supression ancien timer
-            if(timer != null)
+            if (timer != null)
             {
                 timer.Stop();
             }
@@ -192,7 +193,7 @@ namespace pendu
                 //Se repositionne à la position initiale
                 Console.SetCursorPosition(currentPosLeft, currentPosTop);
 
-                if(remainingSeconds < 0)
+                if (remainingSeconds < 0)
                 {
                     DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
                     timer.Stop();
@@ -208,7 +209,7 @@ namespace pendu
         {
             remainingSeconds--;
 
-            if(remainingSeconds <= 10)
+            if (remainingSeconds <= 10)
             {
                 DisplayColor(remainingSeconds + " secondes          ", ConsoleColor.Red);
             }
@@ -230,6 +231,59 @@ namespace pendu
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        private static void ChoixModeJeu(){
+            Console.WriteLine("Choisissez votre mode de jeu parmi les suivants :");
+            Console.WriteLine("Chronometre : Entrez A      Nombre d'essais : Entrez B");
+
+            if (Console.ReadLine().ToUpper() == "A")
+            {
+                ClearConsoleLine();
+                Console.WriteLine("Choisissez votre difficulté :");
+                DisplayColor("Débutant : A (120 secondes)", ConsoleColor.Gray);
+                DisplayColor("Intermédiaire : B (90 secondes)", ConsoleColor.Gray);
+                DisplayColor("Expert : C (30 secondes)", ConsoleColor.Gray);
+
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "A":
+                        tempsLimite = 120;
+                        break;
+                    case "B":
+                        tempsLimite = 90;
+                        break;
+                    case "C":
+                        tempsLimite = 30;
+                        break;
+                }
+            }
+            else if (Console.ReadLine().ToUpper() == "B")
+            {
+                Console.WriteLine("Choisissez votre difficulté :");
+                DisplayColor("Débutant : A (10 essais)", ConsoleColor.Gray);
+                DisplayColor("Intermédiaire : B (5 essais)", ConsoleColor.Gray);
+                DisplayColor("Expert : C (1 essais)", ConsoleColor.Gray);
+
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "A":
+                        nbEssaiLimite = 10;
+                        break;
+                    case "B":
+                        nbEssaiLimite = 5;
+                        break;
+                    case "C":
+                        nbEssaiLimite = 1;
+                        break;
+                }
+            }
+            else
+            {
+                DisplayColor("Valeur saisie incorrecte!", ConsoleColor.Magenta);
+            }
+            Console.Clear();
+        }
+
     }
 }
 
