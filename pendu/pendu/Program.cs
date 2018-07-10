@@ -15,7 +15,7 @@ namespace pendu
 
         static void Main(string[] args)
         {
-            string path = @"C:\Users\celin\POE\pendu\MyTest.txt";
+            string path = "MyTest.txt";
             if (!File.Exists(path))
             {
                 // Creer le fichier contenant les mots
@@ -51,7 +51,7 @@ namespace pendu
                 //Actions
                 while (!IsOver(mot) && remainingSeconds > 0)
                 {
-                    DisplayTimeCount(false);
+                    DisplayTimeCount();
                     Console.WriteLine(DisplayWordResult(mot));
 
                     // Fonction prise en compte de l'input et affichage de celle ci.
@@ -92,19 +92,23 @@ namespace pendu
 
                     // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
                     lettresEntrees += entree;
+                    RefreshConsole();
                 }
 
+                timer.Stop();
 
 
                 //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
                 if (IsOver(mot))
                 {
+                    Console.Clear();
                     DisplayColor("Bravo ! Tu as gagné !", ConsoleColor.Green);
                 }
                 
                 Console.WriteLine("Voulez vous continuer? Y/N");
 
             } while (Console.ReadLine().ToUpper() == "Y");
+
 
             Console.ReadKey();
         }
@@ -153,13 +157,8 @@ namespace pendu
             return ++essais;
         }
 
-        private static void DisplayTimeCount(bool delete)
+        private static void DisplayTimeCount()
         {
-            if (delete == true)
-            {
-                timer.Stop();
-                return;
-            }
             Console.Write("Temps écoulé : ");
 
             //Récupere la position du pointeur console pour mettre a jour le compteur de temps
