@@ -38,6 +38,11 @@ namespace pendu
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
+           
+            remainingSeconds = 100;
+           
+
+       
 
             //Boucle du jeu
             do
