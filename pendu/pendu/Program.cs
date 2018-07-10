@@ -14,10 +14,16 @@ namespace pendu
 
         static void Main(string[] args)
         {
-            string path = @"~\dictionnaire.txt";
-            
+
+            string path = "dictionnaire.txt";
+                     
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
+           
+            remainingSeconds = 100;
+           
+
+       
 
             //Boucle du jeu
             do
@@ -33,9 +39,8 @@ namespace pendu
                 {
                     DisplayTimeCount();
                     Console.WriteLine(DisplayWordResult(mot));
+
                     // Fonction prise en compte de l'input et affichage de celle ci.
-
-
                     Console.WriteLine();
                     Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
 
@@ -52,38 +57,68 @@ namespace pendu
                     {
                         if (lettresEntrees.Contains(entree))
                         {
-                            DisplayColor(" Caractère déja entré", ConsoleColor.Red);
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
                         }
                         else
                         {
                             DisplayColor($"Bravo! {entree} Continuez !", ConsoleColor.Green);
                         }
                     }
-
                     else
                     {
-                        DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        if (lettresEntrees.Contains(entree))
+                        {
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        }
                     }
 
                     // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
                     lettresEntrees += entree;
+                    RefreshConsole();
                 }
 
+                timer.Stop();
 
 
                 //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
                 if (IsOver(mot))
                 {
-                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
+                    Console.Clear();
+                    DisplayColor("Bravo ! Tu as gagné !", ConsoleColor.Green);
                 }
-
+                
                 Console.WriteLine("Voulez vous continuer? Y/N");
 
             } while (Console.ReadLine().ToUpper() == "Y");
 
+
             Console.ReadKey();
         }
-        
+
+        private static void ClearConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+
+        }
+
+        private static void RefreshConsole()
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                Console.SetCursorPosition(1, Console.CursorTop - 2);
+                ClearConsoleLine();
+            }
+        }
+
+
+
         private static string DisplayWordResult(Mot mot)
         {
             string result = "";
