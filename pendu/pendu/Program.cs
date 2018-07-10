@@ -13,6 +13,7 @@ namespace pendu
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
 
             //Boucle du jeu
@@ -23,7 +24,7 @@ namespace pendu
                 remainingSeconds = 100;
                 essais = 0;
                 Mot mot = Mot.CreateMot();
-                
+
                 //Actions
                 while (!IsOver(mot) && remainingSeconds > 0)
                 {
@@ -47,17 +48,17 @@ namespace pendu
                     {
                         if (lettresEntrees.Contains(entree))
                         {
-                            Console.WriteLine($" Caractère déja entré");
+                            DisplayColor(" Caractère déja entré", ConsoleColor.Red);
                         }
                         else
                         {
-                            Console.WriteLine($"Bravo! {entree} Continuez !");
+                            DisplayColor($"Bravo! {entree} Continuez !", ConsoleColor.Green);
                         }
                     }
 
                     else
                     {
-                        Console.WriteLine("Manqué, essayez encore !");
+                        DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
                     }
 
                     // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
@@ -69,9 +70,8 @@ namespace pendu
                 //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
                 if (IsOver(mot))
                 {
-                    Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
+                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
                 }
-
 
                 Console.WriteLine("Voulez vous continuer? Y/N");
 
@@ -111,7 +111,7 @@ namespace pendu
             //Récupere la position du pointeur console pour mettre a jour le compteur de temps
             var cursorPositionTimeLeft = Console.CursorLeft;
             var cursorPositionTimeTop = Console.CursorTop;
-            Console.Write(remainingSeconds-- + " secondes          ");
+            DisplayRemainingSeconds();
 
             //Supression ancien timer
             if(timer != null)
@@ -129,14 +129,14 @@ namespace pendu
 
                 //Se positionne a la bonne position pour réécrire le temps
                 Console.SetCursorPosition(cursorPositionTimeLeft, cursorPositionTimeTop);
-                Console.Write(remainingSeconds-- + " secondes          ");
+                DisplayRemainingSeconds();
 
                 //Se repositionne à la position initiale
                 Console.SetCursorPosition(currentPosLeft, currentPosTop);
 
                 if(remainingSeconds < 0)
                 {
-                    Console.WriteLine("Dommage ! Tu as perdu petit asticot !");
+                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
                     timer.Stop();
                 }
             };
@@ -146,9 +146,31 @@ namespace pendu
             timer.Start();
         }
 
+        static void DisplayRemainingSeconds()
+        {
+            remainingSeconds--;
+
+            if(remainingSeconds <= 10)
+            {
+                DisplayColor(remainingSeconds + " secondes          ", ConsoleColor.Red);
+            }
+            else
+            {
+                Console.Write(remainingSeconds + " secondes          ");
+            }
+        }
+
         private static bool IsOver(Mot mot)
         {
             return mot.HaveAllLeters(lettresEntrees);
+        }
+
+        private static void DisplayColor(string sentence, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(sentence);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
