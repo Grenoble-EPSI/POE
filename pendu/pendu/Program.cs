@@ -71,17 +71,23 @@ namespace pendu
                     {
                         if (lettresEntrees.Contains(entree))
                         {
-                            DisplayColor(" Caractère déja entré", ConsoleColor.Red);
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
                         }
                         else
                         {
                             DisplayColor($"Bravo! {entree} Continuez !", ConsoleColor.Green);
                         }
                     }
-
                     else
                     {
-                        DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        if (lettresEntrees.Contains(entree))
+                        {
+                            DisplayColor("Caractère déja entré", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
+                        }
                     }
 
                     // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
@@ -93,7 +99,7 @@ namespace pendu
                 //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
                 if (IsOver(mot))
                 {
-                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
+                    DisplayColor("Bravo ! Tu as gagné !", ConsoleColor.Green);
                 }
                 
                 Console.WriteLine("Voulez vous continuer? Y/N");
