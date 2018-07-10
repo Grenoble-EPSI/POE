@@ -24,6 +24,8 @@ namespace pendu
         {
             this.list = list;
         }
+
+        //la méthode qui charge le fichier 
         public String[] charger()
         {
                 list = File.ReadAllLines(@"C:\Users\Alexis Hidalgo\Documents\nombres.txt");
