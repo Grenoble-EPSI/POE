@@ -1,4 +1,4 @@
-chaussette
+﻿chaussette
 lavabo
 soleil
 nuage
