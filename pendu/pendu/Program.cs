@@ -6,62 +6,82 @@ namespace pendu
    
     class Program
     {
-        static int i=0;
+        static int essais;
         static string lettresEntrees = "";
         static Timer timer = null;
         static int remainingSeconds;
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Jeu du pendu");
            
             remainingSeconds = 100;
-            Mot mot = Mot.CreateMot();
+           
 
-            while (!IsOver(mot) && remainingSeconds > 0)
+       
+
+            //Boucle du jeu
+            do
             {
-                DisplayTimeCount();
-                Console.WriteLine(DisplayWordResult(mot));
-                // Fonction prise en compte de l'input et affichage de celle ci.
-                
-                Console.WriteLine();
-                Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
+                //Initialisation
+                lettresEntrees = "";
+                remainingSeconds = 100;
+                essais = 0;
+                Mot mot = Mot.CreateMot();
 
-                string entree = Console.ReadLine().ToUpper();
-
-                //Si le temps est écoulé, on arrète maintenant
-                if(remainingSeconds <= 0)
+                //Actions
+                while (!IsOver(mot) && remainingSeconds > 0)
                 {
-                    break;
-                }
+                    DisplayTimeCount();
+                    Console.WriteLine(DisplayWordResult(mot));
+                    // Fonction prise en compte de l'input et affichage de celle ci.
 
-                // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
-                if (mot.Contains(entree))
-                {
-                    if (lettresEntrees.Contains(entree))
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Essai n°{nbEssai()} Entrez une lettre !");
+
+                    string entree = Console.ReadLine().ToUpper();
+
+                    //Si le temps est écoulé, on arrète maintenant
+                    if (remainingSeconds <= 0)
                     {
-                        Console.WriteLine($" Caractère déja entré");
+                        break;
                     }
+
+                    // Test pour savoir si la lettre entrée par l'utilisateur est dans le mot choisi
+                    if (mot.Contains(entree))
+                    {
+                        if (lettresEntrees.Contains(entree))
+                        {
+                            DisplayColor(" Caractère déja entré", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            DisplayColor($"Bravo! {entree} Continuez !", ConsoleColor.Green);
+                        }
+                    }
+
                     else
                     {
-                        Console.WriteLine($"Bravo! {entree} Continuez !");
+                        DisplayColor("Manqué, essayez encore !", ConsoleColor.Red);
                     }
+
+                    // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
+                    lettresEntrees += entree;
                 }
-                
-                else
+
+
+
+                //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
+                if (IsOver(mot))
                 {
-                    Console.WriteLine("Manqué, essayez encore !");
+                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
                 }
 
-                // Ajout du caractère tapé par l'utilisateur dans une chaine de caractère, pour sauvegarder les entrées
-                lettresEntrees += entree;
-            }
+                Console.WriteLine("Voulez vous continuer? Y/N");
 
-            //Affichage du message de fin, si le joueur a bien trouvé toutes les lettres, il à gagné
-            if(IsOver(mot))
-            {
-                Console.WriteLine("Bravo ! Vous avez touvé le bon mot !");
-            }
+            } while (Console.ReadLine().ToUpper() == "Y");
 
             Console.ReadKey();
         }
@@ -76,7 +96,7 @@ namespace pendu
                     result += mot.GetChar(i);
                 } else
                 {
-                    result += "_";
+                    result += "-";
                 }
             }
             return result;
@@ -87,7 +107,7 @@ namespace pendu
         // methode qui sert à incrementer le compteur
         static int nbEssai()
         {
-            return ++i;
+            return ++essais;
         }
 
         private static void DisplayTimeCount()
@@ -97,7 +117,7 @@ namespace pendu
             //Récupere la position du pointeur console pour mettre a jour le compteur de temps
             var cursorPositionTimeLeft = Console.CursorLeft;
             var cursorPositionTimeTop = Console.CursorTop;
-            Console.Write(remainingSeconds-- + " secondes          ");
+            DisplayRemainingSeconds();
 
             //Supression ancien timer
             if(timer != null)
@@ -115,14 +135,14 @@ namespace pendu
 
                 //Se positionne a la bonne position pour réécrire le temps
                 Console.SetCursorPosition(cursorPositionTimeLeft, cursorPositionTimeTop);
-                Console.Write(remainingSeconds-- + " secondes          ");
+                DisplayRemainingSeconds();
 
                 //Se repositionne à la position initiale
                 Console.SetCursorPosition(currentPosLeft, currentPosTop);
 
                 if(remainingSeconds < 0)
                 {
-                    Console.WriteLine("Dommage ! Tu as perdu petit asticot !");
+                    DisplayColor("Dommage ! Tu as perdu petit asticot !", ConsoleColor.Red);
                     timer.Stop();
                 }
             };
@@ -132,9 +152,31 @@ namespace pendu
             timer.Start();
         }
 
+        static void DisplayRemainingSeconds()
+        {
+            remainingSeconds--;
+
+            if(remainingSeconds <= 10)
+            {
+                DisplayColor(remainingSeconds + " secondes          ", ConsoleColor.Red);
+            }
+            else
+            {
+                Console.Write(remainingSeconds + " secondes          ");
+            }
+        }
+
         private static bool IsOver(Mot mot)
         {
             return mot.HaveAllLeters(lettresEntrees);
+        }
+
+        private static void DisplayColor(string sentence, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(sentence);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
