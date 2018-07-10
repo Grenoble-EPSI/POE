@@ -14,7 +14,7 @@ namespace pendu
         static void Main(string[] args)
         {
             Console.WriteLine("Jeu du pendu");
-
+           
             remainingSeconds = 100;
             Mot mot = Mot.CreateMot();
 
